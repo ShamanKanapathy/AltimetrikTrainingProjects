@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+  https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+
+<!--    <bean id="emp1" class="Employee" lazy-init="true" scope="singleton">-->
+<!--    <bean id="emp1" class="Employee" lazy-init="true" scope="prototype">-->
+
+    <bean id="emp1" class="Employee"></bean>
+    <bean id="staff1" class="Staff">
+        <constructor-arg name="e" ref="emp1"></constructor-arg>
+    </bean>
+
+
+
+
+
+<!--      <constructor-arg name="employeeId" value="200"></constructor-arg>-->
+<!--      <constructor-arg name="employeeName" value="Raj"></constructor-arg>-->
+<!--      </bean>-->
+
+<!--    <bean id="emp2" class="Employee">-->
+<!--        <constructor-arg name="employeeId" value="100"></constructor-arg>-->
+<!--        <constructor-arg name="employeeName" value="Rajesh"></constructor-arg>-->
+<!--    </bean>-->
+
+<!--<bean class="Staff">-->
+
+<!--    <property name="staffId" value="120"></property>-->
+<!--    <property name="staffName" value="kohli"></property>-->
+
+<!--</bean>-->
+
+</beans>
+
+
+
