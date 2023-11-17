@@ -1,25 +1,26 @@
 package com.intern.intern.entity;
 
-import java.util.Date;
+import lombok.Getter;
+import org.springframework.data.domain.Pageable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.util.Date;
+import java.util.List;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "employee_allocation")
 public class EmpAllocation {
-	
+
 	@Id
-	@Column(name="emp_code")
+	@Column(name = "emp_code")
 	private String empCode;
 
 	private float booking_id;
 
 	private String employee_first_name;
 
-	
+
 	private String employee_last_name;
 
 	private String account_name;
@@ -28,9 +29,10 @@ public class EmpAllocation {
 
 	private float total_hc;
 
-	private String project_name;
+	@Column(name="project_name")
+	private String projectName;
 
-	@Column(name="base_category")
+	@Column(name = "base_category")
 	private String baseCategory;
 
 	private String capability_center;
@@ -57,7 +59,7 @@ public class EmpAllocation {
 
 	private Date engaged_start_date;
 
-	@Column(name="assignment_status")
+	@Column(name = "assignment_status")
 	private String assignmentStatus;
 
 	private String prj_sow_type;
@@ -69,6 +71,18 @@ public class EmpAllocation {
 	private int benching_days;
 
 	private Date created_date;
+
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinTable(
+			name = "join_column_table",
+			joinColumns = @JoinColumn(name = "emp_code", referencedColumnName = "emp_code"),
+			inverseJoinColumns = {
+					@JoinColumn(name = "Emp_Firstname", referencedColumnName = "employee_first_name"),
+					@JoinColumn(name = "Emp_Lastname", referencedColumnName = "employee_last_name")
+			}
+	)
+	private List<EmpAllocation> joinColumnList;
+
 
 	public String getEmpCode() {
 		return empCode;
@@ -126,12 +140,12 @@ public class EmpAllocation {
 		this.total_hc = total_hc;
 	}
 
-	public String getProject_name() {
-		return project_name;
+	public String getProjectName() {
+		return projectName;
 	}
 
 	public String setProject_name(String project_name) {
-		return this.project_name = project_name;
+		return this.projectName = projectName;
 	}
 
 	public String getBaseCategory() {
@@ -287,4 +301,26 @@ public class EmpAllocation {
 	}
 
 
+//	private String FullName;
+//
+//	public String getFullName() {
+//		return FullName;
+//	}
+//
+//	public void setFullName(String fullName) {
+//		FullName = fullName;
+//	}
+
+//	public Pageable getPageable() {
+//		return pageable;
+//	}
+//
+//	public void setPageable(Pageable pageable) {
+//		this.pageable = pageable;
+//	}
+//
+//	private Pageable pageable;
 }
+
+
+
